@@ -22,7 +22,7 @@ const LoginHeader = styled.h1`
 
 const LoginBtn = styled.button`
   padding: 15px 25px;
-  font-size: 26px;
+  font-size: 22px;
   color: #fff;
   background-color: #32e26a;
   outline: none;
@@ -32,7 +32,7 @@ const LoginBtn = styled.button`
 const LoginAnchor = styled.a`
   width: 100%;
   height: 100%;
-  font-weight: bold;
+  font-weight: 500;
   text-decoration: none;
   color: inherit;
 `;
