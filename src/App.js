@@ -4,42 +4,43 @@ import Login from "./containers/Login";
 import { getToken } from "./spotify";
 import SpotifyWebApi from "spotify-web-api-js";
 import { useStateProviderValue } from "./StateProvider";
+import Player from "./containers/Player";
 //import {loginUrl} from './spotify';
 
 const spotify = new SpotifyWebApi();
 
 function App() {
-  const [{user, token}, dispatch] = useStateProviderValue();
+  const [{ user, token }, dispatch] = useStateProviderValue();
 
   useEffect(() => {
     const hashURL = getToken();
     window.location.hash = "";
     const token = hashURL.access_token;
 
-    setTimeout(() => console.log(hashURL), 1000);
-
     if (token) {
       dispatch({
         type: "SET_TOKEN",
-        token: token
-      })
+        token: token,
+      });
       spotify.setAccessToken(token);
 
       spotify.getMe().then((user) => {
         dispatch({
           type: "SET_USER",
-          user:user
+          user: user,
         });
       });
-    };
+      spotify.getUserPlaylists().then( playlists => {
+        dispatch({
+          type: "SET_PLAYLISTS",
+          playlists: playlists,
+        })
+      })
+    }
   }, []);
 
-  console.log(user);
-
   return (
-    <div className="App">
-      {token ? <h1>I'm logged now</h1> : <Login></Login>}
-    </div>
+    <div className="App">{token ? <Player spotify = {spotify}></Player> : <Login></Login>}</div>
   );
 }
 
