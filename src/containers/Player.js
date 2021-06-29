@@ -12,8 +12,8 @@ function Player({ spotify }) {
   return (
     <React.Fragment>
       <PlayerBody>
-        <Sidebar></Sidebar>
-        <Body></Body>
+        <Sidebar/>
+        <Body spotify = {spotify}/>
       </PlayerBody>
       <Footer></Footer>
     </React.Fragment>
