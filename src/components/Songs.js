@@ -39,8 +39,8 @@ export const Songs = () => {
                 <FavoriteIcon/>
                 <MoreHorizIcon/>
             </IconBody>
-            {discover_weekly?.tracks.items.map( item => {
-                <SongRow track = {item.track} />
+            {discover_weekly?.tracks.items.map( (item, i) => {
+                return <SongRow key={i} track = {item.track} />
             })}
             </SongsBody>
         </React.Fragment>
