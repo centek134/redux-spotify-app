@@ -10,7 +10,7 @@ import Player from "./containers/Player";
 const spotify = new SpotifyWebApi();
 
 function App() {
-  const [{ user, token }, dispatch] = useStateProviderValue();
+  const [{ token }, dispatch] = useStateProviderValue();
 
   useEffect(() => {
     const hashURL = getToken();
@@ -34,22 +34,17 @@ function App() {
         dispatch({
           type: "SET_PLAYLISTS",
           playlists: playlists,
-        })
+        });
       });
 
       spotify.getPlaylist("37i9dQZEVXcV0By1HiLgja").then( response => {
-
-        console.log(response)
         dispatch({
           type:"SET_DISCOVER_WEEKLY",
           discover_weekly: response
-        })
-      }
-        )
-
-
-    }
-  }, []);
+        });
+      });
+    };
+  }, [dispatch]);
 
   return (
     <div className="App">{token ? <Player spotify = {spotify}></Player> : <Login></Login>}</div>
