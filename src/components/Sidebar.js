@@ -7,7 +7,7 @@ import LibraryMusicIcon from '@material-ui/icons/LibraryMusic';
 import { useStateProviderValue } from '../StateProvider';
 
 const Bar = styled.div`
-    height: 100vh;
+    min-height: 100vh;
     background: #040404;
     color: #ffffff;
     min-width: 230px;
